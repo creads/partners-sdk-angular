@@ -1,0 +1,26 @@
+{
+  "name": "angular-partners-api",
+  "version": "0.0.0",
+  "authors": [
+    "Samuel Vaillant <samuel@creads.org>"
+  ],
+  "description": "Angular module for call Creads partners API",
+  "license": "proprietary",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "build"
+  ],
+  "dependencies": {
+    "angular": "~1.3.5",
+    "jquery": "~2.1.1",
+    "fontawesome": "~4.3.0",
+    "modernizr": "~2.8.3",
+    "angular-ui-router": "~0.2.13",
+    "bootstrap": "~3.3.2"
+  }
+}
