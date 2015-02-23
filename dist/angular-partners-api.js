@@ -1,3 +1,9 @@
+/**
+ * angular-partners-api - Angular module for call Creads partners API
+ * @version v0.0.0
+ * @link http://gitlab.creads.org/creads/angular-partners-api
+ * @license proprietary
+ */
 (function() {
 
   'use strict';

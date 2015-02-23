@@ -9,8 +9,18 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     argv = require('minimist')(process.argv.slice(2)),
     del = require('del'),
-    notify = require('gulp-notify')
+    notify = require('gulp-notify'),
+    pkg = require('./package.json'),
+    header = require('gulp-header')
 ;
+
+var banner = ['/**',
+  ' * <%= pkg.name %> - <%= pkg.description %>',
+  ' * @version v<%= pkg.version %>',
+  ' * @link <%= pkg.homepage %>',
+  ' * @license <%= pkg.license %>',
+  ' */',
+  ''].join('\n');
 
 var defaults = {
 
@@ -61,6 +71,7 @@ gulp.task('js', ['lint'], function() {
     .pipe(gulpif(argv.prod !== undefined, rename(function(filepath) {
       filepath.basename += '.min';
     })))
+    .pipe(header(banner, { pkg : pkg } ))
     .pipe(gulp.dest(defaults.build_dir))
   ;
 });
