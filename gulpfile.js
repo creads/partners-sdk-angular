@@ -15,7 +15,7 @@ var gulp = require('gulp'),
 var defaults = {
 
   // build dir
-  build_dir : 'build/',
+  build_dir : 'dist/',
 
   // JS default config
   js : {
