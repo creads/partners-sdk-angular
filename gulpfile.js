@@ -58,15 +58,13 @@ gulp.task('js', ['lint'], function() {
     .pipe(plumber())
     .pipe(concat(defaults.js.dest_app_filename))
     .pipe(gulpif(argv.prod !== undefined, uglify()))
+    .pipe(gulpif(argv.prod !== undefined, rename(function(filepath) {
+      filepath.basename += '.min';
+    })))
     .pipe(gulp.dest(defaults.build_dir))
   ;
 });
 
-// Clean task
-gulp.task('clean', function() {
-  del.sync(defaults.build_dir);
-});
-
 // --------------------------------
 
-gulp.task('default', ['clean', 'js']);
+gulp.task('default', ['js']);
