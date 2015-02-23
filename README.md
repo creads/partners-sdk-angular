@@ -33,10 +33,10 @@ myapp.config([
   function(apiProvider) {
 
     // configure the api factory
-    apiProvider.setConfig({
-      endpoint: 'YOUR_ENDPOINT_DESTINATION',
-      apiVersion: 'VERSION_OF_ENDPOINT'
-    });
+    apiProvider
+      .setEndpoint('ENDPOINT_URL')
+      .setVersion('VERSION_NAME')
+    ;
 
   }
 ]);
@@ -62,23 +62,7 @@ myapp.config([
 
       // Optional
       // The error method provide $injector as first parameter
-      setOnRequestError(function($injector, rejection) {
-
-        // Do what you want with the rejection
-
-      })
-
-      // Optional
-      setOnResponse(function(response) {
-
-        // Do what you want with the response
-
-        return response;
-      })
-
-      // Optional
-      // The error method provide $injector as first parameter
-      setOnResponseError(function($injector, rejection) {
+      .setOnRequestError(function($injector, rejection) {
 
         // Do what you want with the rejection
 
@@ -90,3 +74,40 @@ myapp.config([
 ]);
 ```
 > for more information about interceptor see [angular $http doc section interceptor](https://docs.angularjs.org/api/ng/service/$http)
+
+### Options
+
+#### API
+
+##### endpoint
+
+Type: `string` Default: `http://api.creads-partners.com`
+
+##### version
+
+Type: `string` Default: `0.0.0`
+
+#### API Interceptor
+
+##### isAbleToCatchAllRequest
+
+Type: `boolean` Default: `false`
+
+If set to true the interceptor will catch all request of your application.
+If set to false the interceptor will catch only the request begins with your endpoint value provide in API.
+
+##### onRequest
+
+Type: `function` Arguments: `config`
+
+##### onRequestError
+
+Type: `function` Arguments: `$injector, rejection`
+
+##### onResponse
+
+Type: `function` Arguments: `config`
+
+##### onResponseError
+
+Type: `function` Arguments: `$injector, rejection`
