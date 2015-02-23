@@ -1,15 +1,15 @@
-## Angular partners API
+# Angular partners API
 
 This is an Angular module for call Creads Partners API.
 
-### Installation
+## Installation
 
 Choose your prefer methods for installation:
 
 * via bower: `bower install git@gitlab.creads.org:creads/angular-partners-api.git --save`
 * via Gitlab: [angular-partners-api](http://gitlab.creads.org/creads/angular-partners-api/repository/archive.zip)
 
-### Usage
+## Usage
 
 Include the file in your application:
 
@@ -23,7 +23,7 @@ Add the module to your application
 var myapp = angular.module('myapp', ['partners.api']);
 ```
 
-### Configuration
+## Configuration
 
 Configure the API factory for your application:
 
@@ -75,39 +75,39 @@ myapp.config([
 ```
 > for more information about interceptor see [angular $http doc section interceptor](https://docs.angularjs.org/api/ng/service/$http)
 
-### Options
+## Options
 
-#### API
+### API
 
-##### endpoint
+#### endpoint
 
 Type: `string` Default: `http://api.creads-partners.com`
 
-##### version
+#### version
 
 Type: `string` Default: `0.0.0`
 
-#### API Interceptor
+### API Interceptor
 
-##### isAbleToCatchAllRequest
+#### isAbleToCatchAllRequest
 
 Type: `boolean` Default: `false`
 
 If set to true the interceptor will catch all request of your application.
 If set to false the interceptor will catch only the request begins with your endpoint value provide in API.
 
-##### onRequest
+#### onRequest
 
 Type: `function` Arguments: `config`
 
-##### onRequestError
+#### onRequestError
 
 Type: `function` Arguments: `$injector, rejection`
 
-##### onResponse
+#### onResponse
 
 Type: `function` Arguments: `config`
 
-##### onResponseError
+#### onResponseError
 
 Type: `function` Arguments: `$injector, rejection`
