@@ -12,19 +12,15 @@
       'partners.api'
     ])
 
-    .constant('PARTNERS_ENDPOINT', 'http://api.creads-partners.com')
-
     .config([
-      'PARTNERS_ENDPOINT',
       'apiProvider',
       'apiInterceptorProvider',
-      function(PARTNERS_ENDPOINT, apiProvider, apiInterceptorProvider) {
+      function(apiProvider, apiInterceptorProvider) {
 
         // configure the api factory
-        apiProvider.setConfig({
-          endpoint: PARTNERS_ENDPOINT,
-          apiVersion: '1.0.0-beta3'
-        });
+        apiProvider
+          .setVersion('1.0.0-beta3')
+        ;
 
         // configure the interceptor method
         apiInterceptorProvider
