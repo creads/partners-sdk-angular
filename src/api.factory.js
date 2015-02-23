@@ -12,16 +12,54 @@
     .provider('api', function () {
 
       var api = {},
-          config = {};
+          endpoint = 'http://api.creads-partners.com',
+          version = '0.0.0'
+      ;
 
       /**
-       * Set config for api
-       * @param {object} _config
-       * @param {string} _config.endpoint
-       * @param {string} _config.apiVersion
+       * [setEndpoint]
+       * @param {string} value
+       * @return apiProvider
        */
-      this.setConfig = function setConfig(_config) {
-        angular.extend(config, _config);
+      this.setEndpoint = function setEndpoint(value) {
+        if (typeof value !== 'string') {
+          throw new Error('String value is provide for parameter endpoint');
+        }
+
+        endpoint = value;
+
+        return this;
+      };
+
+      /**
+       * [getEndpoint]
+       * @return {string}
+       */
+      this.getEndpoint = function getEndpoint() {
+        return endpoint;
+      };
+
+      /**
+       * [setVersion]
+       * @param {string} value
+       * @return apiProvider
+       */
+      this.setVersion = function setVersion(value) {
+        if (typeof value !== 'string') {
+          throw new Error('String value is provide for parameter version');
+        }
+
+        version = value;
+
+        return this;
+      };
+
+      /**
+       * [getVersion]
+       * @return {string}
+       */
+      this.getVersion = function getVersion() {
+        return version;
       };
 
       /**
@@ -35,23 +73,23 @@
 
           /**
            * * Call api method
-           * @param  {object}  _config
-           * @param  {string}  _config.method
-           * @param  {string}  _config.url
-           * @param  {object}  _config.data
-           * @param  {object}  _config.params
-           * @param  {object}  _config.headers
+           * @param  {object}  config
+           * @param  {string}  config.method
+           * @param  {string}  config.url
+           * @param  {object}  config.data
+           * @param  {object}  config.params
+           * @param  {object}  config.headers
            * @return {promise}
            */
-          api.call = function call(_config) {
+          api.call = function call(config) {
             var deferred = $q.defer();
 
             $http({
-              method: _config.method,
-              url: config.endpoint + '/' + config.apiVersion + _config.url,
-              data: _config.data,
-              params: _config.params,
-              headers: _config.headers
+              method: config.method,
+              url: endpoint + '/' + version + config.url,
+              data: config.data,
+              params: config.params,
+              headers: config.headers
             })
             .success(function(data) {
               deferred.resolve(data);
