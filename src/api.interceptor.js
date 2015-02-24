@@ -125,7 +125,7 @@
             apiInterceptor.request = function request(config) {
 
               if (isIntercept(config.url) && onRequest !== undefined) {
-                config = onRequest(config);
+                config = onRequest($injector, config);
               }
 
               return config;
@@ -153,7 +153,7 @@
             apiInterceptor.response = function response(_response) {
 
               if (isIntercept(_response.config.url) && onResponse !== undefined) {
-                _response = onResponse(_response);
+                _response = onResponse($injector, _response);
               }
 
               return _response;
