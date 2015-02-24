@@ -98,7 +98,7 @@ If set to false the interceptor will catch only the request begins with your end
 
 #### onRequest
 
-Type: `function` Arguments: `config`
+Type: `function` Arguments: `$injector, config`
 
 #### onRequestError
 
@@ -106,7 +106,7 @@ Type: `function` Arguments: `$injector, rejection`
 
 #### onResponse
 
-Type: `function` Arguments: `config`
+Type: `function` Arguments: `$injector, config`
 
 #### onResponseError
 
