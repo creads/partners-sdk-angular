@@ -139,7 +139,7 @@
             apiInterceptor.requestError = function requestError(rejection) {
 
               if (isIntercept(rejection.url) && onRequestError !== undefined) {
-                onRequestError($injector, rejection);
+                return onRequestError($injector, rejection);
               }
 
               return $q.reject(rejection);
@@ -167,7 +167,7 @@
             apiInterceptor.responseError = function responseError(rejection) {
 
               if (isIntercept(rejection.config.url) && onResponseError !== undefined) {
-                onResponseError($injector, rejection);
+                return onResponseError($injector, rejection);
               }
 
               return $q.reject(rejection);
