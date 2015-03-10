@@ -18,7 +18,7 @@
 
       this.setEndpoint = setEndpoint;
       this.setVersion = setVersion;
-      this.$get = ['$http', '$q', $get];
+      this.$get = $get;
 
       /**
        * [setEndpoint]
@@ -58,6 +58,7 @@
        * @param  {$q}    $q
        * @return {api}
        */
+      $get.$inject = ['$http', '$q'];
       function $get($http, $q) {
 
         api.call = call;
