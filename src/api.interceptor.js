@@ -14,11 +14,18 @@
       function(apiProvider) {
 
         var apiInterceptor = {},
-            isAbleToCatchAllRequest = false,
+            _isAbleToCatchAllRequest = false,
             onRequest,
             onRequestError,
             onResponse,
             onResponseError;
+
+        this.setIsAbleToCatchAllRequest = setIsAbleToCatchAllRequest;
+        this.setOnRequest = setOnRequest;
+        this.setOnRequestError = setOnRequestError;
+        this.setOnResponse = setOnResponse;
+        this.setOnResponseError = setOnResponseError;
+        this.$get = ['$q, $injector', $get];
 
         /**
          * Check if the given object is function
@@ -35,29 +42,31 @@
          * @return {Boolean}
          */
         function isIntercept(url) {
-          return (isAbleToCatchAllRequest || new RegExp('^' + apiProvider.getEndpoint()).test(url)) ? true : false;
+          return (_isAbleToCatchAllRequest || new RegExp('^' + apiProvider.getEndpoint()).test(url)) ? true : false;
         }
 
         /**
          * [setIsAbleToCatchAllRequest]
          * @param {boolean} value
          */
-        this.setIsAbleToCatchAllRequest = function setIsAbleToCatchAllRequest(value) {
+        function setIsAbleToCatchAllRequest(value) {
+          /* jshint validthis: true */
           if (typeof value !== 'boolean') {
-            throw new Error('Boolean value is provide for option IsAbleToCatchAllRequest');
+            throw new Error('Boolean value is provide for option isAbleToCatchAllRequest');
           }
 
-          isAbleToCatchAllRequest = value;
+          _isAbleToCatchAllRequest = value;
 
           return this;
-        };
+        }
 
         /**
          * [setOnRequest]
          * @param {[type]} callbackRequest
          * @return this
          */
-        this.setOnRequest = function setOnRequest(callbackRequest) {
+        function setOnRequest(callbackRequest) {
+          /* jshint validthis: true */
           if (!isFunction(callbackRequest)) {
             throw new Error('Function is provide for option onRequest');
           }
@@ -65,14 +74,15 @@
           onRequest = callbackRequest;
 
           return this;
-        };
+        }
 
         /**
          * [setOnRequestError]
          * @param {[type]} callbackRequestError
          * @return this
          */
-        this.setOnRequestError = function setOnRequestError(callbackRequestError) {
+        function setOnRequestError(callbackRequestError) {
+          /* jshint validthis: true */
           if (!isFunction(callbackRequestError)) {
             throw new Error('Function is provide for option onRequestError');
           }
@@ -80,14 +90,15 @@
           onRequestError = callbackRequestError;
 
           return this;
-        };
+        }
 
         /**
          * [setOnResponse]
          * @param  {[type]} callbackResponse
          * @return this
          */
-        this.setOnResponse = function setOnResponse(callbackResponse) {
+        function setOnResponse(callbackResponse) {
+          /* jshint validthis: true */
           if (!isFunction(callbackResponse)) {
             throw new Error('Function is provide for option onResponse');
           }
@@ -95,14 +106,15 @@
           onResponse = callbackResponse;
 
           return this;
-        };
+        }
 
         /**
          * [setOnResponseError]
          * @param {[type]} callbackResponseError
          * @return this
          */
-        this.setOnResponseError = function setOnResponseError(callbackResponseError) {
+        function setOnResponseError(callbackResponseError) {
+          /* jshint validthis: true */
           if (!isFunction(callbackResponseError)) {
             throw new Error('Function is provide for option onResponseError');
           }
@@ -110,72 +122,84 @@
           onResponseError = callbackResponseError;
 
           return this;
-        };
+        }
 
-        this.$get = [
-          '$q',
-          '$injector',
-          function apiInterceptor($q, $injector) {
+        /**
+         * apiInterceptor factory
+         * @param  {$q}             $q
+         * @param  {$injector}      $injector
+         * @return {apiInterceptor}
+         */
+        function $get($q, $injector) {
 
-            /**
-             * [request]
-             * @param  {[type]} config
-             * @return {object}
-             */
-            apiInterceptor.request = function request(config) {
+          apiInterceptor.request = request;
+          apiInterceptor.requestError = requestError;
+          apiInterceptor.response = response;
+          apiInterceptor.responseError = responseError;
+          apiInterceptor.isAbleToCatchAllRequest = isAbleToCatchAllRequest;
 
-              if (isIntercept(config.url) && onRequest !== undefined) {
-                config = onRequest($injector, config);
-              }
+          return apiInterceptor;
 
-              return config;
-            };
+          /**
+           * [request]
+           * @param  {object} config
+           * @return {object}
+           */
+          function request(config) {
+            if (isIntercept(config.url) && onRequest !== undefined) {
+              config = onRequest($injector, config);
+            }
 
-            /**
-             * [requestError]
-             * @param  {object} rejection
-             * @return {promise}
-             */
-            apiInterceptor.requestError = function requestError(rejection) {
-
-              if (isIntercept(rejection.url) && onRequestError !== undefined) {
-                return onRequestError($injector, rejection);
-              }
-
-              return $q.reject(rejection);
-            };
-
-            /**
-             * [response]
-             * @param  {object} response
-             * @return {object}
-             */
-            apiInterceptor.response = function response(_response) {
-
-              if (isIntercept(_response.config.url) && onResponse !== undefined) {
-                _response = onResponse($injector, _response);
-              }
-
-              return _response;
-            };
-
-            /**
-             * [responseError]
-             * @param  {object} rejection
-             * @return {promise}
-             */
-            apiInterceptor.responseError = function responseError(rejection) {
-
-              if (isIntercept(rejection.config.url) && onResponseError !== undefined) {
-                return onResponseError($injector, rejection);
-              }
-
-              return $q.reject(rejection);
-            };
-
-            return apiInterceptor;
+            return config;
           }
-        ];
+
+          /**
+           * [requestError]
+           * @param  {object} rejection
+           * @return {promise}
+           */
+          function requestError(rejection) {
+            if (isIntercept(rejection.url) && onRequestError !== undefined) {
+              return onRequestError($injector, rejection);
+            }
+
+            return $q.reject(rejection);
+          }
+
+          /**
+           * [response]
+           * @param  {object} response
+           * @return {object}
+           */
+          function response(_response) {
+            if (isIntercept(_response.config.url) && onResponse !== undefined) {
+              _response = onResponse($injector, _response);
+            }
+
+            return _response;
+          }
+
+          /**
+           * [responseError]
+           * @param  {object} rejection
+           * @return {promise}
+           */
+          function responseError(rejection) {
+            if (isIntercept(rejection.config.url) && onResponseError !== undefined) {
+              return onResponseError($injector, rejection);
+            }
+
+            return $q.reject(rejection);
+          }
+
+          /**
+           * [isAbleToCatchAllRequest]
+           * @return {Boolean}
+           */
+          function isAbleToCatchAllRequest() {
+            return _isAbleToCatchAllRequest;
+          }
+        }
 
       }
     ])
