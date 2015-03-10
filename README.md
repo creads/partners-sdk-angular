@@ -111,3 +111,25 @@ Type: `function` Arguments: `$injector, config`
 #### onResponseError
 
 Type: `function` Arguments: `$injector, rejection`
+
+## Methods
+
+### API
+
+#### call
+
+Return: `promise`
+
+Arguments:
+
+```js
+{
+  method: 'GET | POST | PUT | etc..', // String method for the call
+  url: '/YOUR_URL', // String url you want call
+  data: { data1: 'data1', data2: 'data2' }, // Data object or string to be sent as the request message data
+  params: { query: 'parms1'}, // Object query string parameters
+  headers: {} // Object with headers parameters as Authorization, Content-Type, etc...
+}
+```
+
+Call the URL provide by your configuration.
