@@ -52,7 +52,9 @@
       ;
 
       this.setEndpoint = setEndpoint;
+      this.getEndpoint = getEndpoint;
       this.setVersion = setVersion;
+      this.getVersion = getVersion;
       this.$get = $get;
 
       /**
@@ -72,6 +74,14 @@
       }
 
       /**
+       * [getEndpoint]
+       * @return {string}
+       */
+      function getEndpoint() {
+        return endpoint;
+      }
+
+      /**
        * [setVersion]
        * @param {string} value
        * @return apiProvider
@@ -85,6 +95,14 @@
         version = value;
 
         return this;
+      }
+
+      /**
+       * [getVersion]
+       * @return {string}
+       */
+      function getVersion() {
+        return version;
       }
 
       /**
@@ -130,22 +148,6 @@
           });
 
           return deferred.promise;
-        }
-
-        /**
-         * [getEndpoint]
-         * @return {string}
-         */
-        function getEndpoint() {
-          return endpoint;
-        }
-
-        /**
-         * [getVersion]
-         * @return {string}
-         */
-        function getVersion() {
-          return version;
         }
 
       }
