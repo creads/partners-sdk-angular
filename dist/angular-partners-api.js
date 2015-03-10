@@ -53,7 +53,7 @@
 
       this.setEndpoint = setEndpoint;
       this.setVersion = setVersion;
-      this.$get = ['$http', '$q', $get];
+      this.$get = $get;
 
       /**
        * [setEndpoint]
@@ -93,6 +93,7 @@
        * @param  {$q}    $q
        * @return {api}
        */
+      $get.$inject = ['$http', '$q'];
       function $get($http, $q) {
 
         api.call = call;
@@ -180,7 +181,7 @@
         this.setOnRequestError = setOnRequestError;
         this.setOnResponse = setOnResponse;
         this.setOnResponseError = setOnResponseError;
-        this.$get = ['$q, $injector', $get];
+        this.$get = $get;
 
         /**
          * Check if the given object is function
@@ -285,6 +286,7 @@
          * @param  {$injector}      $injector
          * @return {apiInterceptor}
          */
+        $get.$inject = ['$q', '$injector'];
         function $get($q, $injector) {
 
           apiInterceptor.request = request;
