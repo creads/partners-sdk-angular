@@ -16,12 +16,17 @@
           version = '0.0.0'
       ;
 
+      this.setEndpoint = setEndpoint;
+      this.setVersion = setVersion;
+      this.$get = ['$http', '$q', $get];
+
       /**
        * [setEndpoint]
        * @param {string} value
        * @return apiProvider
        */
-      this.setEndpoint = function setEndpoint(value) {
+      function setEndpoint(value) {
+        /* jshint validthis: true */
         if (typeof value !== 'string') {
           throw new Error('String value is provide for parameter endpoint');
         }
@@ -29,22 +34,15 @@
         endpoint = value;
 
         return this;
-      };
-
-      /**
-       * [getEndpoint]
-       * @return {string}
-       */
-      this.getEndpoint = function getEndpoint() {
-        return endpoint;
-      };
+      }
 
       /**
        * [setVersion]
        * @param {string} value
        * @return apiProvider
        */
-      this.setVersion = function setVersion(value) {
+      function setVersion(value) {
+        /* jshint validthis: true */
         if (typeof value !== 'string') {
           throw new Error('String value is provide for parameter version');
         }
@@ -52,58 +50,69 @@
         version = value;
 
         return this;
-      };
-
-      /**
-       * [getVersion]
-       * @return {string}
-       */
-      this.getVersion = function getVersion() {
-        return version;
-      };
+      }
 
       /**
        * API factory
+       * @param  {$http} $http
+       * @param  {$q}    $q
+       * @return {api}
        */
-      this.$get = [
-        '$http',
-        '$q',
-        '$state',
-        function $get($http, $q, $state) {
+      function $get($http, $q) {
 
-          /**
-           * * Call api method
-           * @param  {object}  config
-           * @param  {string}  config.method
-           * @param  {string}  config.url
-           * @param  {object}  config.data
-           * @param  {object}  config.params
-           * @param  {object}  config.headers
-           * @return {promise}
-           */
-          api.call = function call(config) {
-            var deferred = $q.defer();
+        api.call = call;
+        api.getEndpoint = getEndpoint;
+        api.getVersion = getVersion;
 
-            $http({
-              method: config.method,
-              url: endpoint + '/' + version + config.url,
-              data: config.data,
-              params: config.params,
-              headers: config.headers
-            })
-            .success(function(data) {
-              deferred.resolve(data);
-            })
-            .error(function(data, status) {
-              deferred.reject(data);
-            });
+        return api;
 
-            return deferred.promise;
-          };
+        /**
+         * Call api method
+         * @param  {object}  config
+         * @param  {string}  config.method
+         * @param  {string}  config.url
+         * @param  {object}  config.data
+         * @param  {object}  config.params
+         * @param  {object}  config.headers
+         * @return {promise}
+         */
+        function call(config) {
+          var deferred = $q.defer();
 
-          return api;
+          $http({
+            method: config.method,
+            url: endpoint + '/' + version + config.url,
+            data: config.data,
+            params: config.params,
+            headers: config.headers
+          })
+          .success(function(data) {
+            deferred.resolve(data);
+          })
+          .error(function(data, status) {
+            deferred.reject(data);
+          });
+
+          return deferred.promise;
         }
-      ];
+
+        /**
+         * [getEndpoint]
+         * @return {string}
+         */
+        function getEndpoint() {
+          return endpoint;
+        }
+
+        /**
+         * [getVersion]
+         * @return {string}
+         */
+        function getVersion() {
+          return version;
+        }
+
+      }
 
     })
   ;
