@@ -16,9 +16,10 @@
 
   /**
    * ApiInterceptorProvider
+   * @param  {apiProvider}
    * @return {void}
    */
-  function apiInterceptorProvider() {
+  function apiInterceptorProvider(apiProvider) {
     /* jshint validthis: true */
 
     var apiInterceptor = {},
