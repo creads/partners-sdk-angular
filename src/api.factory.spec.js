@@ -106,18 +106,23 @@ describe('[Unit]: Testing api config provider', function() {
 
 
 describe('[Unit]: Testing api factory', function() {
+  var apiFaker;
 
   beforeEach(module('partners.api'));
 
+  beforeEach(inject(function(api) {
+    apiFaker = api;
+  }));
+
   describe('call method', function() {
 
-    it('should exist', inject(function(api) {
-      expect(api.call).to.exist;
-    }));
+    it('should exist', function() {
+      expect(apiFaker.call).to.exist;
+    });
 
-    it('should be a function', inject(function(api) {
-      expect(api.call).to.be.a('function');
-    }));
+    it('should be a function', function() {
+      expect(apiFaker.call).to.be.a('function');
+    });
 
   });
 
