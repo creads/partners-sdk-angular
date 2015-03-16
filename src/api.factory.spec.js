@@ -18,10 +18,6 @@ describe('[Unit]: Testing api config provider', function() {
 
   describe('getEndpoint method', function() {
 
-    it('should exist', function() {
-      expect(apiProvider.getEndpoint).to.exist;
-    });
-
     it('should be a function', function() {
       expect(apiProvider.getEndpoint).to.be.a('function');
     });
@@ -34,7 +30,7 @@ describe('[Unit]: Testing api config provider', function() {
 
   describe('setEndpoint method', function() {
 
-    it('should exist', function() {
+    it('should be a function', function() {
       expect(apiProvider.setEndpoint).to.be.a('function');
     });
 
@@ -61,10 +57,6 @@ describe('[Unit]: Testing api config provider', function() {
 
   describe('getVersion method', function() {
 
-    it('should exist', function() {
-      expect(apiProvider.getVersion).to.exist;
-    });
-
     it('should be a function', function() {
       expect(apiProvider.getVersion).to.be.a('function');
     });
@@ -77,7 +69,7 @@ describe('[Unit]: Testing api config provider', function() {
 
   describe('setVersion method', function() {
 
-    it('should exist', function() {
+    it('should be a function', function() {
       expect(apiProvider.setVersion).to.be.a('function');
     });
 
@@ -118,15 +110,11 @@ describe('[Unit]: Testing api factory', function() {
 
   describe('call method', function() {
 
-    it('should exist', function() {
-      expect(api.call).to.exist;
-    });
-
     it('should be a function', function() {
       expect(api.call).to.be.a('function');
     });
 
-    it('should call http://api.creads-partners.com/0.0.0/ with GET method', function() {
+    it('should call / with GET method', function() {
       $httpBackend
         .expectGET('http://api.creads-partners.com/0.0.0/')
         .respond()
@@ -142,7 +130,7 @@ describe('[Unit]: Testing api factory', function() {
       $httpBackend.flush();
     });
 
-    it('should call http://api.creads-partners.com/0.0.0/projects?query=1 with GET method', function() {
+    it('should call /projects with query params and GET method', function() {
       $httpBackend
         .expectGET('http://api.creads-partners.com/0.0.0/projects?query=1')
         .respond()
@@ -161,7 +149,7 @@ describe('[Unit]: Testing api factory', function() {
       $httpBackend.flush();
     });
 
-    it('should call http://api.creads-partners.com/0.0.0/projects with POST method', function() {
+    it('should call /projects with data and POST method', function() {
       var project = {
         title: 'XXX',
         category: 'ZZZ'
@@ -186,7 +174,7 @@ describe('[Unit]: Testing api factory', function() {
       $httpBackend.flush();
     });
 
-    it('should call http://api.creads-partners.com/0.0.0/ with GET method and specific headers', function() {
+    it('should call / with GET method and specific headers', function() {
       $httpBackend
         .expectGET(
           'http://api.creads-partners.com/0.0.0/',
