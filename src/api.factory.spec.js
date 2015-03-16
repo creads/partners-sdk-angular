@@ -42,6 +42,7 @@ describe('[Unit]: Testing api config provider', function() {
       expect(function() { apiProvider.setEndpoint([]); }).to.throw(Error);
       expect(function() { apiProvider.setEndpoint(102); }).to.throw(Error);
       expect(function() { apiProvider.setEndpoint(true); }).to.throw(Error);
+      expect(function() { apiProvider.setEndpoint(function() {}); }).to.throw(Error);
     });
 
     it('should set endpoint with https://api.github.com', function () {
@@ -81,6 +82,7 @@ describe('[Unit]: Testing api config provider', function() {
       expect(function() { apiProvider.setVersion([]); }).to.throw(Error);
       expect(function() { apiProvider.setVersion(102); }).to.throw(Error);
       expect(function() { apiProvider.setVersion(true); }).to.throw(Error);
+      expect(function() { apiProvider.setVersion(function() {}); }).to.throw(Error);
     });
 
     it('should set version with 1.0.0', function () {
