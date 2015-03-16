@@ -18,7 +18,6 @@ describe('[] API INTERCEPTOR', function() {
     });
 
     describe('isAbleToCatchAllRequest method', function() {
-
       it('should be a function', function() {
         expect(apiInterceptorProvider.setIsAbleToCatchAllRequest).to.be.a('function');
       });
@@ -30,7 +29,6 @@ describe('[] API INTERCEPTOR', function() {
     });
 
     describe('setIsAbleToCatchAllRequest method', function() {
-
       it('should be a function', function() {
         expect(apiInterceptorProvider.setIsAbleToCatchAllRequest).to.be.a('function');
       });
@@ -54,11 +52,9 @@ describe('[] API INTERCEPTOR', function() {
       it('should return an instance of apiInterceptorProvider', function() {
         expect(apiInterceptorProvider.setIsAbleToCatchAllRequest(false)).to.be.an.instanceof(apiInterceptorProvider.constructor);
       });
-
     });
 
     describe('getOnRequest method', function() {
-
       it('should be a function', function() {
         expect(apiInterceptorProvider.getOnRequest).to.be.a('function');
       });
@@ -66,11 +62,9 @@ describe('[] API INTERCEPTOR', function() {
       it('should return undefined', function() {
         expect(apiInterceptorProvider.getOnRequest()).to.be.undefined;
       });
-
     });
 
     describe('setOnRequest method', function() {
-
       it('should be a function', function() {
         expect(apiInterceptorProvider.setOnRequest).to.be.a('function');
       });
@@ -94,11 +88,9 @@ describe('[] API INTERCEPTOR', function() {
       it('should return an instance of apiInterceptorProvider', function() {
         expect(apiInterceptorProvider.setOnRequest(function() {})).to.be.an.instanceof(apiInterceptorProvider.constructor);
       });
-
     });
 
     describe('getOnRequestError method', function() {
-
       it('should be a function', function() {
         expect(apiInterceptorProvider.getOnRequestError).to.be.a('function');
       });
@@ -106,11 +98,9 @@ describe('[] API INTERCEPTOR', function() {
       it('should return undefined', function() {
         expect(apiInterceptorProvider.getOnRequestError()).to.be.undefined;
       });
-
     });
 
     describe('setOnRequestError method', function() {
-
       it('should be a function', function() {
         expect(apiInterceptorProvider.setOnRequestError).to.be.a('function');
       });
@@ -134,11 +124,9 @@ describe('[] API INTERCEPTOR', function() {
       it('should return an instance of apiInterceptorProvider', function() {
         expect(apiInterceptorProvider.setOnRequestError(function() {})).to.be.an.instanceof(apiInterceptorProvider.constructor);
       });
-
     });
 
     describe('getOnResponse method', function() {
-
       it('should be a function', function() {
         expect(apiInterceptorProvider.getOnResponse).to.be.a('function');
       });
@@ -146,11 +134,9 @@ describe('[] API INTERCEPTOR', function() {
       it('should return undefined', function() {
         expect(apiInterceptorProvider.getOnResponse()).to.be.undefined;
       });
-
     });
 
     describe('setOnResponse method', function() {
-
       it('should be a function', function() {
         expect(apiInterceptorProvider.setOnResponse).to.be.a('function');
       });
@@ -174,11 +160,9 @@ describe('[] API INTERCEPTOR', function() {
       it('should return an instance of apiInterceptorProvider', function() {
         expect(apiInterceptorProvider.setOnResponse(function() {})).to.be.an.instanceof(apiInterceptorProvider.constructor);
       });
-
     });
 
     describe('getOnResponseError method', function() {
-
       it('should be a function', function() {
         expect(apiInterceptorProvider.getOnResponseError).to.be.a('function');
       });
@@ -186,11 +170,9 @@ describe('[] API INTERCEPTOR', function() {
       it('should return undefined', function() {
         expect(apiInterceptorProvider.getOnResponseError()).to.be.undefined;
       });
-
     });
 
     describe('setOnResponseError method', function() {
-
       it('should be a function', function() {
         expect(apiInterceptorProvider.setOnResponseError).to.be.a('function');
       });
@@ -214,7 +196,6 @@ describe('[] API INTERCEPTOR', function() {
       it('should return an instance of apiInterceptorProvider', function() {
         expect(apiInterceptorProvider.setOnResponseError(function() {})).to.be.an.instanceof(apiInterceptorProvider.constructor);
       });
-
     });
 
   });
@@ -270,7 +251,6 @@ describe('[] API INTERCEPTOR', function() {
     });
 
     describe('request', function() {
-
       beforeEach(function() {
         apiInterceptorProvider
           .setIsAbleToCatchAllRequest(true)
@@ -293,9 +273,7 @@ describe('[] API INTERCEPTOR', function() {
           )
           .respond(200)
         ;
-
         $http.get('/mock');
-
         $httpBackend.flush();
       });
 
@@ -323,7 +301,6 @@ describe('[] API INTERCEPTOR', function() {
     // });
 
     describe('response', function() {
-
       beforeEach(function() {
         apiInterceptorProvider
           .setIsAbleToCatchAllRequest(true)
@@ -336,25 +313,18 @@ describe('[] API INTERCEPTOR', function() {
       });
 
       it('should be intercepted', function () {
-        $httpBackend
-          .expectGET('/mock')
-          .respond(200)
-        ;
-
+        $httpBackend.expectGET('/mock').respond(200);
         $http
           .get('/mock')
           .then(function(response) {
             expect(response.data).to.be.equal('isIntercepted');
           })
         ;
-
         $httpBackend.flush();
       });
-
     });
 
     describe('response error', function() {
-
       beforeEach(function() {
         apiInterceptorProvider
           .setIsAbleToCatchAllRequest(true)
@@ -365,25 +335,16 @@ describe('[] API INTERCEPTOR', function() {
           })
         ;
       });
-
       it('should be intercepted', function () {
-        $httpBackend
-          .expectGET('/mock')
-          .respond(400)
-        ;
-
+        $httpBackend.expectGET('/mock').respond(400);
         $http
           .get('/mock')
           .then(null, function(response) {
             expect(response.data).to.be.equal('isInterceptedError');
           })
         ;
-
         $httpBackend.flush();
       });
-
     });
-
   });
-
 });

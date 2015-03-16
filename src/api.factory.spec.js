@@ -1,4 +1,5 @@
 describe('[] API', function() {
+
   describe('[Unit]: Testing api config provider', function() {
     var apiProvider;
 
@@ -18,7 +19,6 @@ describe('[] API', function() {
     });
 
     describe('getEndpoint method', function() {
-
       it('should be a function', function() {
         expect(apiProvider.getEndpoint).to.be.a('function');
       });
@@ -26,11 +26,9 @@ describe('[] API', function() {
       it('should return http://api.creads-partners.com', function() {
         expect(apiProvider.getEndpoint()).to.be.equal('http://api.creads-partners.com');
       });
-
     });
 
     describe('setEndpoint method', function() {
-
       it('should be a function', function() {
         expect(apiProvider.setEndpoint).to.be.a('function');
       });
@@ -54,11 +52,9 @@ describe('[] API', function() {
       it('should return an instance of apiProvider', function() {
         expect(apiProvider.setEndpoint('endpoint')).to.be.an.instanceof(apiProvider.constructor);
       });
-
     });
 
     describe('getVersion method', function() {
-
       it('should be a function', function() {
         expect(apiProvider.getVersion).to.be.a('function');
       });
@@ -66,11 +62,9 @@ describe('[] API', function() {
       it('should return 0.0.0', function() {
         expect(apiProvider.getVersion()).to.be.equal('0.0.0');
       });
-
     });
 
     describe('setVersion method', function() {
-
       it('should be a function', function() {
         expect(apiProvider.setVersion).to.be.a('function');
       });
@@ -94,9 +88,7 @@ describe('[] API', function() {
       it('should return an instance of apiProvider', function() {
         expect(apiProvider.setVersion('endpoint')).to.be.an.instanceof(apiProvider.constructor);
       });
-
     });
-
   });
 
 
@@ -112,33 +104,23 @@ describe('[] API', function() {
     }));
 
     describe('call method', function() {
-
       it('should be a function', function() {
         expect(api.call).to.be.a('function');
       });
 
       it('should call / with GET method', function() {
-        $httpBackend
-          .expectGET('http://api.creads-partners.com/0.0.0/')
-          .respond()
-        ;
-
+        $httpBackend.expectGET('http://api.creads-partners.com/0.0.0/').respond(200);
         api
           .call({
             method: 'GET',
             url: '/'
           })
         ;
-
         $httpBackend.flush();
       });
 
       it('should call /projects with query params and GET method', function() {
-        $httpBackend
-          .expectGET('http://api.creads-partners.com/0.0.0/projects?query=1')
-          .respond()
-        ;
-
+        $httpBackend.expectGET('http://api.creads-partners.com/0.0.0/projects?query=1').respond(200);
         api
           .call({
             method: 'GET',
@@ -148,7 +130,6 @@ describe('[] API', function() {
             }
           })
         ;
-
         $httpBackend.flush();
       });
 
@@ -163,7 +144,7 @@ describe('[] API', function() {
             'http://api.creads-partners.com/0.0.0/projects',
             project
           )
-          .respond()
+          .respond(200)
         ;
 
         api
@@ -173,7 +154,6 @@ describe('[] API', function() {
             data: project
           })
         ;
-
         $httpBackend.flush();
       });
 
@@ -201,8 +181,6 @@ describe('[] API', function() {
 
         $httpBackend.flush();
       });
-
     });
-
   });
 });
