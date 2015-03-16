@@ -29,10 +29,15 @@
         onResponse,
         onResponseError;
 
+    this.isAbleToCatchAllRequest = isAbleToCatchAllRequest;
     this.setIsAbleToCatchAllRequest = setIsAbleToCatchAllRequest;
+    this.getOnRequest = getOnRequest;
     this.setOnRequest = setOnRequest;
+    this.getOnRequestError = getOnRequestError;
     this.setOnRequestError = setOnRequestError;
+    this.getOnResponse = getOnResponse;
     this.setOnResponse = setOnResponse;
+    this.getOnResponseError = getOnResponseError;
     this.setOnResponseError = setOnResponseError;
     this.$get = $get;
 
@@ -55,6 +60,14 @@
     }
 
     /**
+     * [isAbleToCatchAllRequest]
+     * @return {Boolean}
+     */
+    function isAbleToCatchAllRequest() {
+      return _isAbleToCatchAllRequest;
+    }
+
+    /**
      * [setIsAbleToCatchAllRequest]
      * @param {boolean} value
      */
@@ -66,6 +79,14 @@
       _isAbleToCatchAllRequest = value;
 
       return this;
+    }
+
+    /**
+     * [getOnRequest]
+     * @return {Function|undefined}
+     */
+    function getOnRequest() {
+      return onRequest;
     }
 
     /**
@@ -84,6 +105,14 @@
     }
 
     /**
+     * [getOnRequestError]
+     * @return {Function|undefined}
+     */
+    function getOnRequestError() {
+      return onRequestError;
+    }
+
+    /**
      * [setOnRequestError]
      * @param {[type]} callbackRequestError
      * @return this
@@ -99,6 +128,14 @@
     }
 
     /**
+     * [getOnResponse]
+     * @return {Function|undefined}
+     */
+    function getOnResponse() {
+      return onResponse;
+    }
+
+    /**
      * [setOnResponse]
      * @param  {[type]} callbackResponse
      * @return this
@@ -111,6 +148,14 @@
       onResponse = callbackResponse;
 
       return this;
+    }
+
+    /**
+     * [getOnResponseError]
+     * @return {Function|undefined}
+     */
+    function getOnResponseError() {
+      return onResponseError;
     }
 
     /**
@@ -197,13 +242,6 @@
         return $q.reject(rejection);
       }
 
-      /**
-       * [isAbleToCatchAllRequest]
-       * @return {Boolean}
-       */
-      function isAbleToCatchAllRequest() {
-        return _isAbleToCatchAllRequest;
-      }
     }
 
   }

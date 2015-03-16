@@ -11,7 +11,8 @@ var gulp = require('gulp'),
     del = require('del'),
     notify = require('gulp-notify'),
     pkg = require('./package.json'),
-    header = require('gulp-header')
+    header = require('gulp-header'),
+    karma = require('gulp-karma')
 ;
 
 var banner = ['/**',
@@ -34,6 +35,21 @@ var defaults = {
 
     // main file for app
     dest_app_filename : 'angular-partners-api.js',
+  },
+
+  // Test config
+  tests : {
+    // path files for tests
+    files : [
+      'bower_components/angular/angular.js',
+      'bower_components/angular-mocks/angular-mocks.js',
+      'src/api.module.js',
+      'src/api.config.js',
+      'src/api.factory.js',
+      'src/api.interceptor.js',
+      'src/api.factory.spec.js',
+      'src/api.interceptor.spec.js'
+    ]
   }
 
 };
@@ -76,6 +92,14 @@ gulp.task('js', ['lint'], function() {
   ;
 });
 
+gulp.task('tests', function() {
+  return gulp.src(defaults.tests.files)
+    .pipe(karma({
+      configFile: 'karma.conf.js'
+    }))
+  ;
+});
+
 // --------------------------------
 
-gulp.task('default', ['js']);
+gulp.task('default', ['tests', 'js']);
