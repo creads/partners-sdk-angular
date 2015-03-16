@@ -218,4 +218,172 @@ describe('[] API INTERCEPTOR', function() {
     });
 
   });
+
+
+  describe('[Unit]: Testing apiInterceptor factory', function() {
+    var apiInterceptorProvider,
+        $httpProvider,
+        $httpBackend,
+        $http,
+        apiInterceptor,
+        api;
+
+    beforeEach(function() {
+      module('partners.api', function($injector) {
+        apiInterceptorProvider = $injector.get('apiInterceptorProvider');
+        $httpProvider = $injector.get('$httpProvider');
+      });
+
+      inject(function($injector) {
+        $httpBackend = $injector.get('$httpBackend');
+        $http = $injector.get('$http');
+        apiInterceptor = $injector.get('apiInterceptor');
+        api = $injector.get('api');
+      })
+    });
+
+    beforeEach(function() {
+      apiInterceptorProvider
+        .setOnRequest(function($injector, config) {
+          config.headers.isCatch = true;
+
+          return config;
+        })
+      ;
+    });
+
+    it('should be register as interceptor', function() {
+      expect($httpProvider.interceptors).to.contain('apiInterceptor');
+    });
+
+    it('should not catch all request', function() {
+      $httpBackend
+        .expectGET(
+          '/mock',
+          {
+            Accept: 'application/json, text/plain, */*'
+          }
+        )
+        .respond();
+      $http.get('/mock');
+      $httpBackend.flush();
+    });
+
+    describe('request', function() {
+
+      beforeEach(function() {
+        apiInterceptorProvider
+          .setIsAbleToCatchAllRequest(true)
+          .setOnRequest(function($injector, config) {
+            config.headers.isCatch = true;
+
+            return config;
+          })
+        ;
+      });
+
+      it('should be intercepted', function () {
+        $httpBackend
+          .expectGET(
+            '/mock',
+            {
+              isCatch: true,
+              Accept: 'application/json, text/plain, */*'
+            }
+          )
+          .respond(200)
+        ;
+
+        $http.get('/mock');
+
+        $httpBackend.flush();
+      });
+
+    });
+
+    // TO DO
+    // describe('request error', function() {
+
+    //   beforeEach(function() {
+    //     apiInterceptorProvider
+    //       .setIsAbleToCatchAllRequest(true)
+    //       .setOnRequestError(function($injector, rejection) {
+    //         console.log('ici');
+    //         rejection.data = 'isInterceptedError';
+
+    //         return $injector.get('$q').reject(rejection);
+    //       })
+    //     ;
+    //   });
+
+      // it('should be intercepted', function () {
+        // TO DO
+      // });
+
+    // });
+
+    describe('response', function() {
+
+      beforeEach(function() {
+        apiInterceptorProvider
+          .setIsAbleToCatchAllRequest(true)
+          .setOnResponse(function($injector, response) {
+            response.data = 'isIntercepted';
+
+            return response;
+          })
+        ;
+      });
+
+      it('should be intercepted', function () {
+        $httpBackend
+          .expectGET('/mock')
+          .respond(200)
+        ;
+
+        $http
+          .get('/mock')
+          .then(function(response) {
+            expect(response.data).to.be.equal('isIntercepted');
+          })
+        ;
+
+        $httpBackend.flush();
+      });
+
+    });
+
+    describe('response error', function() {
+
+      beforeEach(function() {
+        apiInterceptorProvider
+          .setIsAbleToCatchAllRequest(true)
+          .setOnResponseError(function($injector, rejection) {
+            rejection.data = 'isInterceptedError';
+
+            return $injector.get('$q').reject(rejection);
+          })
+        ;
+      });
+
+      it('should be intercepted', function () {
+        $httpBackend
+          .expectGET('/mock')
+          .respond(400)
+        ;
+
+        $http
+          .get('/mock')
+          .then(null, function(response) {
+            expect(response.data).to.be.equal('isInterceptedError');
+          })
+        ;
+
+        $httpBackend.flush();
+      });
+
+    });
+
+  });
+
 });
