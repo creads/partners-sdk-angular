@@ -21,7 +21,8 @@ module.exports = function(config) {
       'src/api.config.js',
       'src/api.factory.js',
       'src/api.interceptor.js',
-      'src/api.factory.spec.js'
+      'src/api.factory.spec.js',
+      'src/api.interceptor.spec.js'
     ],
 
 
