@@ -23,6 +23,7 @@ describe('[] API INTERCEPTOR', function() {
       });
 
       it('should return false', function() {
+        /*jshint expr:true */
         expect(apiInterceptorProvider.isAbleToCatchAllRequest()).to.be.false;
       });
 
@@ -45,6 +46,7 @@ describe('[] API INTERCEPTOR', function() {
       });
 
       it('should set _isAbleToCatchAllRequest to true', function () {
+        /*jshint expr:true */
         apiInterceptorProvider.setIsAbleToCatchAllRequest(true);
         expect(apiInterceptorProvider.isAbleToCatchAllRequest()).to.be.true;
       });
@@ -60,6 +62,7 @@ describe('[] API INTERCEPTOR', function() {
       });
 
       it('should return undefined', function() {
+        /*jshint -W030 */
         expect(apiInterceptorProvider.getOnRequest()).to.be.undefined;
       });
     });
@@ -96,6 +99,7 @@ describe('[] API INTERCEPTOR', function() {
       });
 
       it('should return undefined', function() {
+        /*jshint -W030 */
         expect(apiInterceptorProvider.getOnRequestError()).to.be.undefined;
       });
     });
@@ -132,6 +136,7 @@ describe('[] API INTERCEPTOR', function() {
       });
 
       it('should return undefined', function() {
+        /*jshint -W030 */
         expect(apiInterceptorProvider.getOnResponse()).to.be.undefined;
       });
     });
@@ -168,6 +173,7 @@ describe('[] API INTERCEPTOR', function() {
       });
 
       it('should return undefined', function() {
+        /*jshint -W030 */
         expect(apiInterceptorProvider.getOnResponseError()).to.be.undefined;
       });
     });
@@ -220,7 +226,7 @@ describe('[] API INTERCEPTOR', function() {
         $http = $injector.get('$http');
         apiInterceptor = $injector.get('apiInterceptor');
         api = $injector.get('api');
-      })
+      });
     });
 
     beforeEach(function() {
