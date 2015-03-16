@@ -91,9 +91,9 @@ describe('[Unit]: Testing api config provider', function() {
       expect(function() { apiProvider.setVersion(true); }).to.throw(Error);
     });
 
-    it('should set endpoint with https://api.github.com', function () {
-      apiProvider.setVersion('https://api.github.com');
-      expect(apiProvider.getVersion()).to.be.equal('https://api.github.com');
+    it('should set version with 1.0.0', function () {
+      apiProvider.setVersion('1.0.0');
+      expect(apiProvider.getVersion()).to.be.equal('1.0.0');
     });
 
     it('should return an instance of apiProvider', function() {
@@ -106,12 +106,14 @@ describe('[Unit]: Testing api config provider', function() {
 
 
 describe('[Unit]: Testing api factory', function() {
-  var api;
+  var api,
+      $httpBackend;
 
   beforeEach(module('partners.api'));
 
   beforeEach(inject(function($injector) {
     api = $injector.get('api');
+    $httpBackend = $injector.get('$httpBackend');
   }));
 
   describe('call method', function() {
@@ -122,6 +124,91 @@ describe('[Unit]: Testing api factory', function() {
 
     it('should be a function', function() {
       expect(api.call).to.be.a('function');
+    });
+
+    it('should call http://api.creads-partners.com/0.0.0/ with GET method', function() {
+      $httpBackend
+        .expectGET('http://api.creads-partners.com/0.0.0/')
+        .respond()
+      ;
+
+      api
+        .call({
+          method: 'GET',
+          url: '/'
+        })
+      ;
+
+      $httpBackend.flush();
+    });
+
+    it('should call http://api.creads-partners.com/0.0.0/projects?query=1 with GET method', function() {
+      $httpBackend
+        .expectGET('http://api.creads-partners.com/0.0.0/projects?query=1')
+        .respond()
+      ;
+
+      api
+        .call({
+          method: 'GET',
+          url: '/projects',
+          params: {
+            query: 1
+          }
+        })
+      ;
+
+      $httpBackend.flush();
+    });
+
+    it('should call http://api.creads-partners.com/0.0.0/projects with POST method', function() {
+      var project = {
+        title: 'XXX',
+        category: 'ZZZ'
+      };
+
+      $httpBackend
+        .expectPOST(
+          'http://api.creads-partners.com/0.0.0/projects',
+          project
+        )
+        .respond()
+      ;
+
+      api
+        .call({
+          method: 'POST',
+          url: '/projects',
+          data: project
+        })
+      ;
+
+      $httpBackend.flush();
+    });
+
+    it('should call http://api.creads-partners.com/0.0.0/ with GET method and specific headers', function() {
+      $httpBackend
+        .expectGET(
+          'http://api.creads-partners.com/0.0.0/',
+          {
+            Authorization: 'Bearer TOKEN',
+            Accept: 'application/json, text/plain, */*'
+          }
+        )
+        .respond()
+      ;
+
+      api
+        .call({
+          method: 'GET',
+          url: '/',
+          headers: {
+            Authorization: 'Bearer TOKEN'
+          }
+        })
+      ;
+
+      $httpBackend.flush();
     });
 
   });
