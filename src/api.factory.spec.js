@@ -1,4 +1,4 @@
-describe('[] API', function() {
+describe('-> API', function() {
 
   describe('[Unit]: Testing api config provider', function() {
     var apiProvider;

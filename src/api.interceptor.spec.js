@@ -1,4 +1,4 @@
-describe('[] API INTERCEPTOR', function() {
+describe('-> API INTERCEPTOR', function() {
   describe('[Unit]: Testing apiInterceptor config provider', function() {
     var apiInterceptorProvider;
 
