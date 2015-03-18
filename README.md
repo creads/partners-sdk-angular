@@ -1,13 +1,13 @@
-# Angular partners API
+# Angular Partners API
 
-This is an Angular module for call Creads Partners API.
+Partners Angular module for call API.
 
 ## Installation
 
 Choose your prefer methods for installation:
 
-* via bower: `bower install git@gitlab.creads.org:creads/angular-partners-api.git --save`
-* via Gitlab: [angular-partners-api](http://gitlab.creads.org/creads/angular-partners-api/repository/archive.zip)
+* via bower: `bower install git@github.com:creads/angular-partners-api.git --save`
+* via Gitlab: [angular-partners-api](https://github.com/creads/angular-partners-api/archive/master.zip)
 
 ## Usage
 
@@ -25,14 +25,14 @@ var myapp = angular.module('myapp', ['partners.api']);
 
 ## Configuration
 
-Configure the API factory for your application:
+Configure the API provider for your application:
 
 ```js
 myapp.config([
   'apiProvider',
   function(apiProvider) {
 
-    // configure the api factory
+    // configure the api provider
     apiProvider
       .setEndpoint('ENDPOINT_URL')
       .setVersion('VERSION_NAME')
@@ -42,14 +42,14 @@ myapp.config([
 ]);
 ```
 
-(Optional) Configure the interceptor for your application:
+(Optional) Configure the interceptor provider for your application:
 
 ```js
 myapp.config([
   'apiInterceptorProvider',
   function(apiInterceptorProvider) {
 
-    // configure the interceptor method
+    // configure the interceptor provider
     apiInterceptorProvider
 
       // Optional
@@ -133,3 +133,15 @@ Arguments:
 ```
 
 Call the URL provide by your configuration.
+
+#### getEndpoint
+
+Return: `string`
+
+Return the current endpoint of your configuration.
+
+#### getVersion
+
+Return: `string`
+
+Return the current version of your configuration.
