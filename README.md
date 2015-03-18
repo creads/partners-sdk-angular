@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/creads/angular-partners-api.svg?branch=master)](https://travis-ci.org/creads/angular-partners-api)
+
 # Angular Partners API
 
 Partners Angular module for call API.
