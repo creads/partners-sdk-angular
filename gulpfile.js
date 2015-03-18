@@ -78,7 +78,7 @@ gulp.task('js', ['lint'], function() {
   var files = [];
 
   files.push(path.join(defaults.js.source_dir, '/*.module.js'));
-  files.push(path.join(defaults.js.source_dir, '/*.*.js'));
+  files.push(path.join(defaults.js.source_dir, '/*.*[^spec].js'));
 
   return gulp.src(files)
     .pipe(plumber())
