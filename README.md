@@ -35,7 +35,6 @@ myapp.config([
     // configure the api provider
     apiProvider
       .setEndpoint('ENDPOINT_URL')
-      .setVersion('VERSION_NAME')
     ;
 
   }
@@ -81,11 +80,7 @@ myapp.config([
 
 #### endpoint
 
-Type: `string` Default: `http://api.creads-partners.com`
-
-#### version
-
-Type: `string` Default: `0.0.0`
+Type: `string` Default: `http://api.creads-partners.com/v1`
 
 ### API Interceptor
 
@@ -139,9 +134,3 @@ Call the URL provide by your configuration.
 Return: `string`
 
 Return the current endpoint of your configuration.
-
-#### getVersion
-
-Return: `string`
-
-Return the current version of your configuration.
