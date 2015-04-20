@@ -19,12 +19,12 @@
 
         // configure the api factory
         apiProvider
-          .setVersion('1.0.0-beta3')
+          .setEndpoint('http://api.demo.creads-partners.com')
         ;
 
         // configure the interceptor method
         apiInterceptorProvider
-          .setOnRequest(function(config) {
+          .setOnRequest(function($injector, config) {
 
             config.headers.Authorization = 'Bearer TOKEN';
 
