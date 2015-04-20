@@ -21,14 +21,11 @@
     /* jshint validthis: true */
 
     var api = {},
-        endpoint = 'http://api.creads-partners.com',
-        version = '0.0.0'
+        endpoint = 'http://api.creads-partners.com/v1'
     ;
 
     this.setEndpoint = setEndpoint;
     this.getEndpoint = getEndpoint;
-    this.setVersion = setVersion;
-    this.getVersion = getVersion;
     this.$get = $get;
 
     /**
@@ -55,29 +52,6 @@
     }
 
     /**
-     * [setVersion]
-     * @param {string} value
-     * @return apiProvider
-     */
-    function setVersion(value) {
-      if (typeof value !== 'string') {
-        throw new Error('String value is provide for parameter version');
-      }
-
-      version = value;
-
-      return this;
-    }
-
-    /**
-     * [getVersion]
-     * @return {string}
-     */
-    function getVersion() {
-      return version;
-    }
-
-    /**
      * API factory
      * @param  {$http} $http
      * @param  {$q}    $q
@@ -88,7 +62,6 @@
 
       api.call = call;
       api.getEndpoint = getEndpoint;
-      api.getVersion = getVersion;
 
       return api;
 
@@ -107,7 +80,7 @@
 
         $http({
           method: config.method,
-          url: endpoint + '/' + version + config.url,
+          url: endpoint + config.url,
           data: config.data,
           params: config.params,
           headers: config.headers

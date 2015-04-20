@@ -23,8 +23,8 @@ describe('-> API', function() {
         expect(apiProvider.getEndpoint).to.be.a('function');
       });
 
-      it('should return http://api.creads-partners.com', function() {
-        expect(apiProvider.getEndpoint()).to.be.equal('http://api.creads-partners.com');
+      it('should return http://api.creads-partners.com/v1', function() {
+        expect(apiProvider.getEndpoint()).to.be.equal('http://api.creads-partners.com/v1');
       });
     });
 
@@ -54,41 +54,6 @@ describe('-> API', function() {
       });
     });
 
-    describe('getVersion method', function() {
-      it('should be a function', function() {
-        expect(apiProvider.getVersion).to.be.a('function');
-      });
-
-      it('should return 0.0.0', function() {
-        expect(apiProvider.getVersion()).to.be.equal('0.0.0');
-      });
-    });
-
-    describe('setVersion method', function() {
-      it('should be a function', function() {
-        expect(apiProvider.setVersion).to.be.a('function');
-      });
-
-      it('should throw an error if value is not string', function() {
-        expect(function() { apiProvider.setVersion(); }).to.throw(Error);
-        expect(function() { apiProvider.setVersion(null); }).to.throw(Error);
-        expect(function() { apiProvider.setVersion(undefined); }).to.throw(Error);
-        expect(function() { apiProvider.setVersion({}); }).to.throw(Error);
-        expect(function() { apiProvider.setVersion([]); }).to.throw(Error);
-        expect(function() { apiProvider.setVersion(102); }).to.throw(Error);
-        expect(function() { apiProvider.setVersion(true); }).to.throw(Error);
-        expect(function() { apiProvider.setVersion(function() {}); }).to.throw(Error);
-      });
-
-      it('should set version with 1.0.0', function () {
-        apiProvider.setVersion('1.0.0');
-        expect(apiProvider.getVersion()).to.be.equal('1.0.0');
-      });
-
-      it('should return an instance of apiProvider', function() {
-        expect(apiProvider.setVersion('endpoint')).to.be.an.instanceof(apiProvider.constructor);
-      });
-    });
   });
 
 
@@ -109,7 +74,7 @@ describe('-> API', function() {
       });
 
       it('should call / with GET method', function() {
-        $httpBackend.expectGET('http://api.creads-partners.com/0.0.0/').respond(200);
+        $httpBackend.expectGET('http://api.creads-partners.com/v1/').respond(200);
         api
           .call({
             method: 'GET',
@@ -120,7 +85,7 @@ describe('-> API', function() {
       });
 
       it('should call /projects with query params and GET method', function() {
-        $httpBackend.expectGET('http://api.creads-partners.com/0.0.0/projects?query=1').respond(200);
+        $httpBackend.expectGET('http://api.creads-partners.com/v1/projects?query=1').respond(200);
         api
           .call({
             method: 'GET',
@@ -141,7 +106,7 @@ describe('-> API', function() {
 
         $httpBackend
           .expectPOST(
-            'http://api.creads-partners.com/0.0.0/projects',
+            'http://api.creads-partners.com/v1/projects',
             project
           )
           .respond(200)
@@ -160,7 +125,7 @@ describe('-> API', function() {
       it('should call / with GET method and specific headers', function() {
         $httpBackend
           .expectGET(
-            'http://api.creads-partners.com/0.0.0/',
+            'http://api.creads-partners.com/v1/',
             {
               Authorization: 'Bearer TOKEN',
               Accept: 'application/json, text/plain, */*'
