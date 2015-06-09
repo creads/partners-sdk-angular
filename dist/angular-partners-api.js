@@ -118,7 +118,8 @@
           url: endpoint + config.url,
           data: config.data,
           params: config.params,
-          headers: config.headers
+          headers: config.headers,
+          ignoreLoadingBar: config.ignoreLoadingBar || false
         })
         .success(function(data) {
           deferred.resolve(data);
