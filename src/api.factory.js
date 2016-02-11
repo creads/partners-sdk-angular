@@ -54,11 +54,10 @@
     /**
      * API factory
      * @param  {$http} $http
-     * @param  {$q}    $q
      * @return {api}
      */
-    $get.$inject = ['$http', '$q'];
-    function $get($http, $q) {
+    $get.$inject = ['$http'];
+    function $get($http) {
 
       api.call = call;
       api.getEndpoint = getEndpoint;
@@ -76,24 +75,14 @@
        * @return {promise}
        */
       function call(config) {
-        var deferred = $q.defer();
-
-        $http({
+        return $http({
           method: config.method,
           url: endpoint + config.url,
           data: config.data,
           params: config.params,
           headers: config.headers,
           ignoreLoadingBar: config.ignoreLoadingBar || false
-        })
-        .success(function(data) {
-          deferred.resolve(data);
-        })
-        .error(function(data, status) {
-          deferred.reject(data);
         });
-
-        return deferred.promise;
       }
     }
 
