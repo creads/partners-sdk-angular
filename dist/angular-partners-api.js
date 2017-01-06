@@ -1,6 +1,6 @@
 /**
  * angular-partners-api - Angular module for call Creads partners API
- * @version v0.0.0
+ * @version v1.1.0
  * @link http://gitlab.creads.org/creads/angular-partners-api
  * @license proprietary
  */
@@ -116,7 +116,8 @@
           data: config.data,
           params: config.params,
           headers: config.headers,
-          ignoreLoadingBar: config.ignoreLoadingBar || false
+          ignoreLoadingBar: config.ignoreLoadingBar || false,
+          options: config.options
         });
       }
     }
@@ -124,6 +125,7 @@
   }
 
 })();
+
 (function() {
 
   'use strict';

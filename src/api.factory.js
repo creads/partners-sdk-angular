@@ -81,7 +81,8 @@
           data: config.data,
           params: config.params,
           headers: config.headers,
-          ignoreLoadingBar: config.ignoreLoadingBar || false
+          ignoreLoadingBar: config.ignoreLoadingBar || false,
+          options: config.options
         });
       }
     }
