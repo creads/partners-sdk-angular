@@ -6,15 +6,14 @@ Partners Angular module for call API.
 
 Choose your prefer methods for installation:
 
-* via bower: `bower install git@github.com:creads/angular-partners-api.git --save`
-* via Gitlab: [angular-partners-api](https://github.com/creads/angular-partners-api/archive/master.zip)
+* via bower: `bower install git@github.com:creads/partners-sdk-angular.git --save`
 
 ## Usage
 
 Include the file in your application:
 
 ```html
-<script src="components/angular-partners-api/dist/angular-partners-api.js" ></script>
+<script src="components/partners-sdk-angular/dist/partners-sdk-angular.js" ></script>
 ```
 
 Add the module to your application

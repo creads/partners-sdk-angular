@@ -34,7 +34,7 @@ var defaults = {
     source_dir : 'src/',
 
     // main file for app
-    dest_app_filename : 'angular-partners-api.js',
+    dest_app_filename : 'partners-sdk-angular.js',
   },
 
   // Test config

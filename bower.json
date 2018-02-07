@@ -1,10 +1,10 @@
 {
-  "name": "angular-partners-api",
+  "name": "partners-sdk-angular",
   "version": "1.1.1",
   "authors": [
     "Samuel Vaillant <samuel@creads.org>"
   ],
-  "main": "dist/angular-partners-api.js",
+  "main": "dist/partners-sdk-angular.js",
   "description": "Angular module for call Creads partners API",
   "license": "proprietary",
   "private": false,
