@@ -6,7 +6,11 @@
     "postinstall": "bower install",
     "prestart": "npm install || true; gulp",
     "start": "gulp start",
-    "test": "./node_modules/karma/bin/karma start --single-run --browsers PhantomJS"
+    "test": "karma start --single-run --browsers PhantomJS",
+    "build": "gulp js",
+    "version": "npm run build && git add -A dist",
+    "bump": "npm version --allow-same-version --no-git-tag-version $VERSION",
+    "postbump": "git add package.json"
   },
   "repository": {
     "type": "git",
