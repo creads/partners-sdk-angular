@@ -1,0 +1,32 @@
+{
+  "name": "partners-sdk-angular",
+  "version": "1.2.1",
+  "authors": [
+    "Samuel Vaillant <samuel@creads.org>"
+  ],
+  "main": "dist/partners-sdk-angular.js",
+  "description": "Angular module for call Creads partners API",
+  "license": "proprietary",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "sample",
+    "gulpfile.js",
+    "package.json"
+  ],
+  "dependencies": {
+    "angular": "~1.3.13"
+  },
+  "devDependencies": {
+    "jquery": "~2.1.1",
+    "fontawesome": "~4.3.0",
+    "modernizr": "~2.8.3",
+    "angular-ui-router": "~0.2.13",
+    "bootstrap": "~3.3.2",
+    "angular-mocks": "~1.3.14"
+  }
+}
