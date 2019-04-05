@@ -4,10 +4,9 @@
   "description": "Angular module for call Creads partners API",
   "scripts": {
     "postinstall": "bower install",
-    "prestart": "npm install || true; gulp",
+    "prestart": "gulp",
     "start": "gulp start",
     "test": "karma start --single-run --browsers PhantomJS",
-    "prebuild": "npm i",
     "build": "gulp js && cd packs && npm pack ../ && cd ../",
     "version": "npm run build && git add -A dist packs",
     "bump": "npm version --allow-same-version --no-git-tag-version $VERSION",
