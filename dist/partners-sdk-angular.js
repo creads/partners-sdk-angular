@@ -1,6 +1,6 @@
 /**
  * partners-sdk-angular - Angular module for call Creads partners API
- * @version v2.0.0
+ * @version v2.1.0
  * @link https://github.com/creads/partners-sdk-angular
  * @license proprietary
  */
