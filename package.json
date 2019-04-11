@@ -10,7 +10,7 @@
     "prebuild": "npm i",
     "build": "gulp js && cd packs && npm pack ../ && cd ../",
     "version": "npm run build && git add -A dist packs",
-    "bump": "npm version --allow-same-version --no-git-tag-version $VERSION",
+    "bump": "CURRENT_VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && [ \"$VERSION\" != \"$CURRENT_VERSION\" ] && npm version --allow-same-version --no-git-tag-version $VERSION || true",
     "postbump": "git add package.json"
   },
   "repository": {
