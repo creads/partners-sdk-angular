@@ -1,6 +1,6 @@
 {
   "name": "partners-sdk-angular",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Angular module for call Creads partners API",
   "scripts": {
     "postinstall": "bower install",
