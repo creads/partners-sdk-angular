@@ -1,17 +1,18 @@
 {
   "name": "partners-sdk-angular",
   "version": "2.2.0",
-  "description": "Angular module for call Creads partners API",
+  "private": true,
+  "description": "A simple AngularJS module for Creads Partners API.",
   "scripts": {
-    "postinstall": "bower install",
-    "prestart": "gulp",
-    "start": "gulp start",
-    "test": "karma start --single-run --browsers PhantomJS",
-    "build": "gulp js && cd packs && npm pack ../ && cd ../",
+    "test": "karma start --single-run",
+    "clean": "rm -rf dist/*",
+    "prebuild": "check-node-version --node $(cat .nvmrc) && npm run clean",
+    "build": "webpack --babel --bail --mode=production && cd packs && npm pack ../ && cd ../",
     "version": "npm run build && git add -A dist packs",
-    "bump": "CURRENT_VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && [ \"$VERSION\" != \"$CURRENT_VERSION\" ] && npm version --allow-same-version --no-git-tag-version $VERSION || true",
-    "postbump": "git add package.json"
+    "bump": "npm version --allow-same-version --no-git-tag-version $VERSION",
+    "postbump": "git add package-lock.json package.json"
   },
+  "main": "dist/partners-sdk-angular.js",
   "repository": {
     "type": "git",
     "url": "git@github.com:creads/partners-sdk-angular.git"
@@ -21,30 +22,28 @@
     "Samuel Vaillant <s.vaillant@creads.org>"
   ],
   "homepage": "https://github.com/creads/partners-sdk-angular",
-  "license": "proprietary",
+  "license": "ISC",
   "devDependencies": {
-    "bower": "^1.3.12",
-    "browser-sync": "^2.2.1",
+    "@babel/core": "^7.4.3",
+    "@babel/polyfill": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "angular": "^1.3.13",
+    "angular-mocks": "^1.3.20",
+    "babel-loader": "^8.0.5",
     "chai": "^2.1.1",
-    "del": "^1.1.0",
-    "gulp": "^3.8.11",
-    "gulp-concat": "^2.4.2",
-    "gulp-header": "^1.2.2",
-    "gulp-if": "^1.2.5",
-    "gulp-jshint": "^1.9.2",
-    "gulp-karma": "0.0.4",
-    "gulp-notify": "^2.2.0",
-    "gulp-plumber": "^0.6.6",
-    "gulp-rename": "^1.2.0",
-    "gulp-sourcemaps": "^1.2.8",
-    "gulp-uglify": "^1.1.0",
-    "karma": "^0.12.31",
+    "check-node-version": "^3.3.0",
+    "karma": "^0.13.22",
     "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^2.2.0",
     "karma-mocha": "^0.1.10",
     "karma-mocha-reporter": "^1.0.1",
-    "karma-phantomjs-launcher": "^0.1.4",
-    "minimist": "^1.1.0",
-    "mocha": "^2.2.1"
+    "mocha": "^2.2.1",
+    "uglifyjs-webpack-plugin": "^2.1.2",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.1"
+  },
+  "peerDependencies": {
+    "angular": ">=1.3.13"
   },
   "dependencies": {}
 }

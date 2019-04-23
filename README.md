@@ -1,22 +1,23 @@
 # Angular Partners API [![Build Status](https://travis-ci.com/creads/partners-sdk-angular.svg?branch=master)](https://travis-ci.com/creads/partners-sdk-angular)
 
-Partners Angular module for call API.
+A simple AngularJS module for Creads Partners API.
 
 ## Installation
 
-Choose your prefer methods for installation:
+    npm install partners-sdk-angular@<PATH_TO_ROOT_DIR>/lib/partners-sdk-angular/packs/partners-sdk-angular-<VERSION>.tgz --save-dev
 
-* via bower: `bower install git@github.com:creads/partners-sdk-angular.git --save`
+> If you're using node5, install with `--ignore-scripts` argument
+> to avoid a BC bug on postinstall with opencollective required by webpack-cli.
 
 ## Usage
 
 Include the file in your application:
 
-```html
-<script src="components/partners-sdk-angular/dist/partners-sdk-angular.js" ></script>
+```js
+require('partners-angular-core');
 ```
 
-Add the module to your application
+Then add the module to your application:
 
 ```js
 var myapp = angular.module('myapp', ['partners.api']);
@@ -73,63 +74,15 @@ myapp.config([
 ```
 > for more information about interceptor see [angular $http doc section interceptor](https://docs.angularjs.org/api/ng/service/$http)
 
-## Options
+## Building the distribution (/dist)
 
-### API
+To build the distribution:
 
-#### endpoint
+    npm ci
+    npm run build
 
-Type: `string` Default: `http://api.creads-partners.com/v1`
+## Running the tests
 
-### API Interceptor
+To run all the tests:
 
-#### isAbleToCatchAllRequest
-
-Type: `boolean` Default: `false`
-
-If set to true the interceptor will catch all request of your application.
-If set to false the interceptor will catch only the request begins with your endpoint value provide in API.
-
-#### onRequest
-
-Type: `function` Arguments: `$injector, config`
-
-#### onRequestError
-
-Type: `function` Arguments: `$injector, rejection`
-
-#### onResponse
-
-Type: `function` Arguments: `$injector, config`
-
-#### onResponseError
-
-Type: `function` Arguments: `$injector, rejection`
-
-## Methods
-
-### API
-
-#### call
-
-Return: `promise`
-
-Arguments:
-
-```js
-{
-  method: 'GET | POST | PUT | etc..', // String method for the call
-  url: '/YOUR_URL', // String url you want call
-  data: { data1: 'data1', data2: 'data2' }, // Data object or string to be sent as the request message data
-  params: { query: 'parms1'}, // Object query string parameters
-  headers: {} // Object with headers parameters as Authorization, Content-Type, etc...
-}
-```
-
-Call the URL provide by your configuration.
-
-#### getEndpoint
-
-Return: `string`
-
-Return the current endpoint of your configuration.
+    npm test
