@@ -9,6 +9,7 @@
     "prebuild": "check-node-version --node $(cat .nvmrc) && npm run clean",
     "build": "webpack --babel --bail --mode=production && cd packs && npm pack ../ && cd ../",
     "version": "npm run build && git add -A dist packs",
+    "prebump": "npm ci --no-audit",
     "bump": "npm version --allow-same-version --no-git-tag-version $VERSION",
     "postbump": "git add package-lock.json package.json"
   },
