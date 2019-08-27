@@ -33,6 +33,8 @@
     "babel-loader": "^8.0.5",
     "chai": "^2.1.1",
     "check-node-version": "^3.3.0",
+    "debug": "2.6.8",
+    "http-proxy": "1.16.2",
     "karma": "^0.13.22",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^2.2.0",
