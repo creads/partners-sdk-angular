@@ -5,8 +5,7 @@
   "description": "A simple AngularJS module for Creads Partners API.",
   "scripts": {
     "test": "karma start --single-run",
-    "clean": "rm -rf dist/*",
-    "prebuild": "check-node-version --node $(cat .nvmrc) && npm run clean",
+    "prebuild": "check-node-version --node $(cat .nvmrc)",
     "build": "webpack --babel --bail --mode=production && cd packs && npm pack ../ && cd ../",
     "version": "npm run build && git add -A dist packs",
     "prebump": "npm ci --no-audit",
@@ -33,6 +32,7 @@
     "babel-loader": "^8.0.5",
     "chai": "^2.1.1",
     "check-node-version": "^3.3.0",
+    "clean-webpack-plugin": "^3.0.0",
     "debug": "2.6.8",
     "http-proxy": "1.16.2",
     "karma": "^0.13.22",
