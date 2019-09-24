@@ -33,7 +33,7 @@
     "chai": "^2.1.1",
     "check-node-version": "^3.3.0",
     "clean-webpack-plugin": "^3.0.0",
-    "debug": "2.6.8",
+    "debug": "2.6.9",
     "http-proxy": "1.16.2",
     "karma": "^0.13.22",
     "karma-chai": "^0.1.0",
