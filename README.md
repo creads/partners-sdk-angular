@@ -4,7 +4,7 @@ A simple AngularJS module for Creads Partners API.
 
 ## Installation
 
-    npm install partners-sdk-angular@<PATH_TO_ROOT_DIR>/lib/partners-sdk-angular/packs/partners-sdk-angular-<VERSION>.tgz --save-dev
+    npm install @creads/partners-sdk-angular
 
 > If you're using node5, install with `--ignore-scripts` argument
 > to avoid a BC bug on postinstall with opencollective required by webpack-cli.
@@ -14,7 +14,7 @@ A simple AngularJS module for Creads Partners API.
 Include the file in your application:
 
 ```js
-require('partners-angular-core');
+require('@creads/partners-sdk-angular');
 ```
 
 Then add the module to your application:
