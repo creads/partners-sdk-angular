@@ -1,6 +1,6 @@
 {
   "name": "@creads/partners-sdk-angular",
-  "version": "2.23.3",
+  "version": "2.24.0",
   "description": "A simple AngularJS module for Creads Partners API.",
   "scripts": {
     "prepare": "npm run build",
