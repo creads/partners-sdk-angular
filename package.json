@@ -22,7 +22,7 @@
     "@babel/core": "^7.4.3",
     "@babel/polyfill": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
-    "angular": "^1.4.9",
+    "angular": "^1.8.0",
     "angular-mocks": "^1.4.9",
     "babel-loader": "^8.0.5",
     "chai": "^2.1.1",
