@@ -35,7 +35,7 @@
     "karma-chrome-launcher": "^2.2.0",
     "karma-mocha": "^0.1.10",
     "karma-mocha-reporter": "^1.0.1",
-    "mocha": "^6.2.2",
+    "mocha": "^6.2.3",
     "uglifyjs-webpack-plugin": "^2.1.2",
     "webpack": "^4.30.0",
     "webpack-cli": "^3.3.1"
